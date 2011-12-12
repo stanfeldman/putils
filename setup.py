@@ -9,6 +9,7 @@ setup(
     version = "0.0.1",
     author = "Stanislav Feldman",
     description = ("Python utils"),
+    url = "https://github.com/stanislavfeldman/putils",
     keywords = "utils singleton dict ternary",
     packages=['putils'],
     classifiers=[
