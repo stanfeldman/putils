@@ -6,11 +6,11 @@ except:
 
 setup(
     name = "putils",
-    version = "0.0.2",
+    version = "0.0.3",
     author = "Stanislav Feldman",
     description = ("Python utils"),
     url = "https://github.com/stanislavfeldman/putils",
-    keywords = "utils singleton dict ternary",
+    keywords = "utils singleton dict ternary filesystem",
     packages=['putils'],
     classifiers=[
         "Development Status :: 3 - Alpha",
