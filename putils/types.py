@@ -26,4 +26,9 @@ class Boolean(object):
 	@staticmethod
 	def ternary(cond, t, f):
 		return (cond and [t] or [f])[0]
+		
+
+class Enum(object):
+	def __new__(cls, **enums):
+		return type('Enum', (), enums)
 
