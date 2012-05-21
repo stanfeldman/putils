@@ -10,14 +10,20 @@ class AspectCall(object):
 	def __call__(self, *args, **kwargs):
 		self.args = args
 		self.kwargs = kwargs
-		self.aspect.on_enter(self)
+		on_enter_result = self.aspect.on_enter(self)
+		if on_enter_result:
+			return on_enter_result
 		try:
 			self.result = self.func(*self.args, **self.kwargs)
-			self.aspect.on_success(self)
+			on_success_result = self.aspect.on_success(self)
+			if on_success_result:
+				return on_success_result
 			return self.result
 		except Exception, e:
 			self.exception = e
-			self.aspect.on_fail(self)
+			on_fail_result = self.aspect.on_fail(self)
+			if on_fail_result:
+				return on_fail_result
 
 	
 class Aspect(object):
