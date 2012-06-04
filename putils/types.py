@@ -31,4 +31,9 @@ class Boolean(object):
 class Enum(object):
 	def __new__(cls, **enums):
 		return type('Enum', (), enums)
+		
+		
+class Struct(object):
+	def __init__(self, **entries): 
+		self.__dict__.update(entries)
 
