@@ -4,6 +4,9 @@ import re
 
 
 class AspectCall(object):
+	"""
+	This object will be passed to methods of your aspect.
+	"""
 	def __init__(self, func, aspect):
 		self.func = func
 		self.aspect = aspect
@@ -27,6 +30,10 @@ class AspectCall(object):
 
 	
 class Aspect(object):
+	"""
+	You need to inherit from this class to create your own aspect.
+	Then you can declare decorator of class or function with this aspect like this: @Aspect()
+	"""
 	def __init__(self, filter=""):
 		self.filter = re.compile(filter)
 		

@@ -1,4 +1,7 @@
 class MetaSingleton(type):
+	"""
+	Declare this class as metaclass for you class to make it singleton.
+	"""
      def __init__(cls, name, bases, dict):
          super(MetaSingleton, cls).__init__(name, bases, dict)
          cls.instance = None
@@ -9,5 +12,8 @@ class MetaSingleton(type):
          return cls.instance
          
 class Singleton(object):
+	"""
+	Inherit from this class to make your class singleton.
+	"""
 	__metaclass__ = MetaSingleton
 
