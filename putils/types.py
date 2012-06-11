@@ -44,8 +44,23 @@ class Enum(object):
 	"""
 	Creates enum.
 	"""
-	def __new__(cls, **enums):
-		return type('Enum', (), enums)
+	def __init__(self, **enums):
+		self.__dict__ = enums
+		self._enums = enums
+		
+	def get(self, name):
+		return self._enums[name]
+		
+	def get_by_value(self, value):
+		if not self.has_value(value):
+			raise LookupError("Enum does not contain value %s" % value)
+		return value
+		
+	def has_value(self, value):
+		return value in self._enums.values()
+		
+	def has_key(self, key):
+		return key in self._enums.keys()
 		
 		
 class Struct(object):
