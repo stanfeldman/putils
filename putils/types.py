@@ -69,4 +69,23 @@ class Struct(object):
 	"""
 	def __init__(self, **entries): 
 		self.__dict__.update(entries)
+		
+		
+class Regex(object):
+	"""
+	Various regex utils
+	"""
+	@staticmethod
+	def string_url_regex(str_name):
+		"""
+		Returns regex for url mapping with sting param
+		"""
+		return r"""(?P<%s>[^ \,\:\;\"\\/']+)""" % str_name
+		
+	@staticmethod
+	def number_url_regex(num_name):
+		"""
+		Returns regex for url mapping with int param
+		"""
+		return r"""(?P<%s>\d+)""" % num_name
 
