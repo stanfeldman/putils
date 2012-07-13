@@ -1,4 +1,5 @@
 import os
+import imp
 
 
 class Importer(object):
@@ -32,3 +33,14 @@ class Importer(object):
 		"""
 		result = os.path.dirname(Importer.import_module(module).__file__)
 		return result
+		
+	@staticmethod
+	def import_module_by_path(path, project_dir_path):
+		"""
+		Imports module by path
+		"""
+		path = path.replace(project_dir_path, "")[:-3]
+		parts = filter(None, path.replace('.', '').split('/'))
+		module_name = '.'.join(parts)
+		return Importer.import_module(module_name)
+        
