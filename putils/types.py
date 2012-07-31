@@ -26,6 +26,8 @@ class Dict(object):
 		for k1,v1 in d1.iteritems():
 			if not k1 in d2:
 				d2[k1] = v1
+			elif isinstance(v1, list):
+				d2[k1] = d2[k1] + v1
 			elif isinstance(v1, dict):
 				Dict.merge(v1, d2[k1])
 		return d2

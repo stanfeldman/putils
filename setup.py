@@ -6,7 +6,7 @@ except:
 
 setup(
     name = "putils",
-    version = "0.1.4",
+    version = "0.1.5",
     author = "Stanislav Feldman",
     description = ("Python utils"),
     url = "https://github.com/stanislavfeldman/putils",
