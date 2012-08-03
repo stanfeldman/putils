@@ -43,4 +43,13 @@ class Importer(object):
 		parts = filter(None, path.replace('.', '').split('/'))
 		module_name = '.'.join(parts)
 		return Importer.import_module(module_name)
+	
+
+class Introspector(object):	
+	@staticmethod
+	def all_subclasses(cls, result=[]):
+		for sub in cls.__subclasses__():
+			result.append(sub)
+			Introspector.all_subclasses(sub, result)
+		return result
         
