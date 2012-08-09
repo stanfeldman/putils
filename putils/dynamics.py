@@ -35,14 +35,16 @@ class Importer(object):
 		return result
 		
 	@staticmethod
-	def import_module_by_path(path, project_dir_path):
+	def import_module_by_path(filepath):
 		"""
 		Imports module by path
 		"""
-		path = path.replace(project_dir_path, "")[:-3]
-		parts = filter(None, path.replace('.', '').split('/'))
-		module_name = '.'.join(parts)
-		return Importer.import_module(module_name)
+		mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
+		if file_ext.lower() == '.py':
+			py_mod = imp.load_source(mod_name, filepath)
+		elif file_ext.lower() == '.pyc':
+			py_mod = imp.load_compiled(mod_name, filepath)
+		return py_mod
 	
 
 class Introspector(object):	
