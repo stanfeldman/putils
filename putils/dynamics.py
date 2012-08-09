@@ -1,5 +1,7 @@
 import os
 import imp
+import sys
+import mimetypes
 
 
 class Importer(object):
@@ -39,12 +41,15 @@ class Importer(object):
 		"""
 		Imports module by path
 		"""
-		mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
-		if file_ext.lower() == '.py':
-			py_mod = imp.load_source(mod_name, filepath)
-		elif file_ext.lower() == '.pyc':
-			py_mod = imp.load_compiled(mod_name, filepath)
-		return py_mod
+		for base_path in sys.path:
+			try:
+				filepath = os.path.relpath(filepath, base_path)[:-3]
+				module_name = '.'.join(filter(None, filepath.replace('.', '').split('/')))
+				return Importer.import_module(module_name)
+			except:
+				pass
+		return None
+			
 	
 
 class Introspector(object):	
