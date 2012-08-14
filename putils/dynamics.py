@@ -59,4 +59,12 @@ class Introspector(object):
 			result.append(sub)
 			Introspector.all_subclasses(sub, result)
 		return result
+		
+	@staticmethod
+	def class_that_defined_method(meth):
+		obj = meth.im_self
+		for cls in inspect.getmro(meth.im_class):
+			if meth.__name__ in cls.__dict__:
+				return cls
+		return None
         
