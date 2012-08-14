@@ -2,6 +2,7 @@ import os
 import imp
 import sys
 import mimetypes
+import inspect
 
 
 class Importer(object):
@@ -67,4 +68,17 @@ class Introspector(object):
 			if meth.__name__ in cls.__dict__:
 				return cls
 		return None
+		
+	@staticmethod
+	def baseclass_before(cls, before_cls):
+		"""
+		returns base class in base classes chain before some class
+		"""
+		last = None
+		for c in inspect.getmro(cls):
+			if c is not before_cls:
+				last = c
+			else:
+				break
+		return last
         
