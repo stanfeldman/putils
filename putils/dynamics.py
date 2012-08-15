@@ -38,6 +38,14 @@ class Importer(object):
 		return result
 		
 	@staticmethod
+	def object_path(obj):
+		"""
+		Returns path of module which contains class of this object
+		"""
+		result = inspect.getmodule(obj).__file__
+		return result
+		
+	@staticmethod
 	def import_module_by_path(filepath):
 		"""
 		Imports module by path
