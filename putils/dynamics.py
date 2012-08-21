@@ -89,4 +89,18 @@ class Introspector(object):
 			else:
 				break
 		return last
+		
+	@staticmethod
+	def baseclasses_before(cls, before_cls):
+		"""
+		returns base classes in base classes chain before some class
+		"""
+		result = []
+		for c in inspect.getmro(cls):
+			if c is not before_cls:
+				if c is not cls:
+					result.append(c)
+			else:
+				break
+		return result
         
