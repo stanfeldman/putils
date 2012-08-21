@@ -63,11 +63,12 @@ class Importer(object):
 
 class Introspector(object):	
 	@staticmethod
-	def all_subclasses(cls, result=[]):
+	def all_subclasses(cls):
+		result = set()
 		for sub in cls.__subclasses__():
-			result.append(sub)
-			Introspector.all_subclasses(sub, result)
-		return result
+			result.add(sub)
+			result.update(Introspector.all_subclasses(sub))
+		return list(result)
 		
 	@staticmethod
 	def class_that_defined_method(meth):
