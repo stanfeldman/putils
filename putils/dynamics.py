@@ -63,6 +63,20 @@ class Importer(object):
 
 class Introspector(object):	
 	@staticmethod
+	def classname(obj, full=True):
+		"""
+		Returns full qualified class name
+		"""
+		if inspect.isclass(obj):
+			cname = obj.__name__
+		else:
+			cname = obj.__class__.__name__
+		if full:
+			return obj.__module__ + "." + cname
+		else:
+			return cname
+		
+	@staticmethod
 	def all_subclasses(cls):
 		result = set()
 		for sub in cls.__subclasses__():
